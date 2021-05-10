@@ -41,6 +41,7 @@ Gm = 0
 GSm = 0
 GFM = 0
 
+# Takes a given key and increments the appropriate key value
 def checkKeySig(givenKey):
     global AM
     global Am
@@ -170,6 +171,8 @@ def checkKeySig(givenKey):
             CSM += 1
         return
 
+# defines the chorales and the keys associated
+# prints out keys for recording purposes    
 chorales = corpus.search('bach', fileExtensions='xml')
 for i, chorale in enumerate(chorales[:300]):
     cScore = chorale.parse()

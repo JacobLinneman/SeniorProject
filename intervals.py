@@ -1,6 +1,11 @@
+# Author: Jacob Linneman
+# intervals.py is a file that finds all of the intervals that follow a tonic note
+# within all of the 300 Bach Chorales. It then prints out all of the intervales
+# that are major, minor, or perfect intervals
+
 from music21 import *
 
-
+# Our values to keep track of
 perfect1 = 0
 m2D = 0
 m2U = 0
@@ -26,6 +31,7 @@ p8U = 0
 p8D = 0
 otherNotes = 0
 
+# takes a given interval and increments the associated values accordingly
 def checkInterval(int):
     global perfect1
     global m2D
@@ -112,13 +118,16 @@ def checkInterval(int):
     else:
         otherNotes += 1
 
-q = 0
-i = 0
+# Defines our 300 chorales to analyze as well as the tonic notes of each.
+# For each tonic we find the next note and analyze the interval of them
+# and record it. We then print out these intervals for recording purposes.
+q = 0 # index for partslenght
+i = 0 # index for length of measures
 measure = 0
 tonicNotes = 0
 totalNotes = 0
 chorales = corpus.search('bach', fileExtensions='xml')
-for p, chorale in enumerate(chorales[:169]):
+for p, chorale in enumerate(chorales[:169]): # there is an error with chorale 170 so we split our analysis into two groups
     c = chorale.parse()
     key = c.analyze('key')
     while q < len(c.parts):
